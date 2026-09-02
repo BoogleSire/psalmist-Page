@@ -1,0 +1,518 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html b:css='false' b:defaultwidgetversion='2' b:layoutsVersion='3' b:responsive='true' b:version='2' class='v2' expr:dir='blog.languageDirection' expr:lang='blog.locale' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
+<head>
+<meta content='width=device-width, initial-scale=1' name='viewport'/>
+<meta content='summary_large_image' name='twitter:card'/>
+<meta expr:content='data:blog.canonicalUrl' property='og:url'/>
+<meta expr:content='blog.pageName ?: data:blog.title' property='og:title'/>
+<meta expr:content='data:blog.metaDescription ?: blog.title' name='description'/>
+<meta expr:content='blog.metaDescription ?: data:blog.title' property='og:description'/>
+<meta content='website' property='og:type'/>
+<link expr:href='blog.canonicalUrl' rel='canonical'/>
+<title><b:if cond='view.isHomepage'><data:blog.title/> &#8212; PsalmistRuth GospelHub<b:else/><data:blog.pageName/> | <data:blog.title/></b:if></title>
+<link href='https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&amp;family=Karla:wght@400;500;700&amp;display=swap' rel='stylesheet'/>
+<b:skin version='1.3.0'><![CDATA[
+/*
+<Group description="Colors">
+  <Variable name="paper" description="Page background" type="color" default="#faf6ec" value="#faf6ec"/>
+  <Variable name="ink" description="Text ink" type="color" default="#20213f" value="#20213f"/>
+  <Variable name="gold" description="Gold accent" type="color" default="#D4AF37" value="#D4AF37"/>
+  <Variable name="card" description="Card background" type="color" default="#fffdf6" value="#fffdf6"/>
+</Group>
+*/
+
+:root{
+  --paper:$(paper);
+  --ink:$(ink);
+  --gold:$(gold);
+  --card:$(card);
+  --muted:#6b6a80;
+  --border:#e3dcc8;
+  --accent:#f6e9c9;
+  --radius:.35rem;
+  --display:"Fraunces",Georgia,ui-serif,serif;
+  --sans:"Karla",system-ui,-apple-system,sans-serif;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+a:hover{text-decoration:underline;text-underline-offset:4px}
+img{max-width:100%;height:auto;display:block}
+h1,h2,h3,h4{font-family:var(--display);font-weight:600;letter-spacing:-.01em;margin:0}
+.wrap{max-width:1100px;margin:0 auto;padding:0 16px}
+.rule-gold{height:1px;width:5rem;background:linear-gradient(90deg,var(--gold),transparent);margin-top:.5rem}
+
+/* Header */
+.site-header{position:sticky;top:0;z-index:40;background:rgba(250,246,236,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--border)}
+.header-inner{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;padding:16px}
+.brand{font-family:var(--display);font-size:1.35rem;font-weight:600}
+.brand span{color:var(--gold)}
+.brand-desc{font-size:.8rem;color:var(--muted)}
+.site-nav ul{display:flex;flex-wrap:wrap;gap:20px;margin:0;padding:0;list-style:none;font-size:.9rem}
+.site-nav a{color:var(--muted)}
+.site-nav a:hover{color:var(--ink)}
+
+/* Layout */
+.layout{display:grid;gap:48px;padding:48px 0}
+@media (min-width:960px){.layout{grid-template-columns:minmax(0,1fr) 22rem}}
+
+/* Posts */
+.post{border-top:1px solid var(--border);padding-top:24px;margin-bottom:40px}
+.post:first-child{border-top:0;padding-top:0}
+.post-label{font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin:0 0 8px}
+.post-title{font-size:1.6rem;line-height:1.25}
+.index .post-title{font-size:1.35rem}
+.item .post-title{font-size:2.2rem}
+.post-meta{margin-top:10px;font-size:.78rem;color:var(--muted)}
+.post-body{margin-top:16px}
+.post-body p{margin:0 0 1.1em}
+.post-body h2,.post-body h3{margin:1.6em 0 .5em}
+.post-body blockquote{margin:1.4em 0;padding-left:16px;border-left:2px solid var(--gold);color:var(--muted);font-style:italic}
+.post-body img{border-radius:var(--radius);margin:1.2em 0}
+.readmore{display:inline-block;margin-top:12px;font-size:.85rem;font-weight:700;border-bottom:1px solid var(--gold)}
+.readmore:hover{text-decoration:none}
+
+/* Buttons & Forms */
+.btn{display:inline-flex;align-items:center;justify-content:center;border-radius:var(--radius);background:#2b2c55;color:#faf6ec;padding:10px 20px;font-size:.88rem;font-weight:700;border:none;cursor:pointer}
+.btn:hover{opacity:.9;text-decoration:none}
+.btn-gold{background:var(--gold);color:#fff}
+.form-group{margin-bottom:12px}
+.form-label{display:block;font-size:.8rem;font-weight:700;margin-bottom:4px;color:var(--muted)}
+.form-input{width:100%;padding:8px 10px;border:1px solid var(--border);border-radius:var(--radius);font-family:var(--sans);font-size:.9rem;background:#fff}
+.form-input:focus{outline:2px solid var(--gold);border-color:transparent}
+
+/* Sidebar */
+.sidebar{display:flex;flex-direction:column;gap:24px}
+@media (min-width:960px){.sidebar{position:sticky;top:96px;align-self:start}}
+.card{border:1px solid var(--border);background:var(--card);border-radius:var(--radius);padding:20px}
+.card.gold{border-color:rgba(212,175,55,.5);background:var(--accent)}
+.card h2,.card h3{font-size:1.05rem}
+.tools{list-style:none;margin:16px 0 0;padding:0;display:flex;flex-direction:column;gap:12px}
+.tools a{display:block;border-radius:var(--radius);padding:8px}
+.tools a:hover{background:var(--accent);text-decoration:none}
+.tools strong{display:block;font-size:.88rem;line-height:1.3}
+.tools small{display:block;color:var(--muted);font-size:.76rem}
+.embed{margin-top:14px;border-radius:var(--radius);overflow:hidden;border:1px solid var(--border)}
+.embed iframe{display:block;width:100%;border:0}
+.widget ul{list-style:none;margin:12px 0 0;padding:0;font-size:.9rem;display:flex;flex-direction:column;gap:8px}
+.widget .widget-item-control{display:none}
+
+/* Feature Modules */
+.module-tabs{display:flex;gap:8px;margin-bottom:12px;border-bottom:1px solid var(--border)}
+.tab-btn{background:none;border:none;padding:8px 12px;font-size:.85rem;font-weight:600;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent}
+.tab-btn.active{color:var(--gold);border-bottom-color:var(--gold)}
+.tab-content{display:none}
+.tab-content.active{display:block}
+.result-box{background:#fff;border:1px solid var(--border);padding:12px;border-radius:var(--radius);margin-top:12px;font-size:.9rem;min-height:60px}
+
+/* Footer */
+.site-footer{margin-top:56px;border-top:1px solid var(--border)}
+.footer-inner{padding:40px 16px;font-size:.85rem;color:var(--muted);max-width:1100px;margin:0 auto}
+.footer-inner .brand{color:var(--ink);font-size:1.05rem}
+.blog-pager{margin:32px 0;display:flex;justify-content:space-between;font-size:.88rem}
+.status-msg-wrap{margin:24px 0;font-size:.9rem;color:var(--muted)}
+]]></b:skin>
+</head>
+
+<body>
+<header class='site-header'>
+  <div class='header-inner wrap'>
+    <b:section class='header-section' id='header' maxwidgets='1' showaddelement='no'>
+      <b:widget id='Header1' locked='true' title='PsalmistRuth GospelHub (Header)' type='Header' version='2' visible='true'>
+        <b:widget-settings>
+          <b:widget-setting name='displayUrl'/>
+          <b:widget-setting name='displayHeight'>0</b:widget-setting>
+          <b:widget-setting name='sectionWidth'>-1</b:widget-setting>
+          <b:widget-setting name='useImage'>false</b:widget-setting>
+          <b:widget-setting name='shrinkToFit'>false</b:widget-setting>
+          <b:widget-setting name='imagePlacement'>BEHIND</b:widget-setting>
+          <b:widget-setting name='displayWidth'>0</b:widget-setting>
+        </b:widget-settings>
+        <b:includable id='main'>
+          <a class='brand' expr:href='data:blog.homepageUrl'>
+            <b:if cond='title'><title/><b:else/>PsalmistRuth<span>GospelHub</span></b:if>
+          </a>
+          <b:if cond='description'><p class='brand-desc'><data:description/></p></b:if>
+        </b:includable>
+        <b:includable id='behindImageStyle'>
+    <b:if cond='sourceUrl'>
+      <b:include cond='data:this.image' data='{ image: data:this.image, selector: ".header-widget" }' name='responsiveImageStyle'/>
+      <style type='text/css'>
+        .header-widget { background-position: center; background-repeat: no-repeat; background-size: cover; }
+      </style>
+    </b:if>
+  </b:includable>
+        <b:includable id='description'>
+    <p><this.description/></p>
+  </b:includable>
+        <b:includable id='image'>
+    <a class='header-image-wrapper' expr:href='blog.homepageUrl'>
+      <b:include data='{ image: data:image, altText: blog.title.escaped, originalWidth: width, originalHeight: height }' name='responsiveImage'/>
+    </a>
+  </b:includable>
+        <b:includable id='title'>
+    <h1>
+      <b:tag cond='data:view.url != data:blog.homepageUrl' expr:href='blog.homepageUrl' name='a'>
+        <data:title/>
+      </b:tag>
+    </h1>
+  </b:includable>
+      </b:widget>
+    </b:section>
+    <nav class='site-nav'>
+      <b:section class='nav-section' id='nav' maxwidgets='1' showaddelement='no'>
+        <b:widget id='LinkList1' locked='false' title='Menu' type='LinkList' version='2' visible='true'>
+          <b:widget-settings>
+            <b:widget-setting name='sorting'>NONE</b:widget-setting>
+            <b:widget-setting name='text-0'>Home</b:widget-setting>
+            <b:widget-setting name='link-0'>/</b:widget-setting>
+            <b:widget-setting name='text-1'>Artist Stories</b:widget-setting>
+            <b:widget-setting name='link-1'>/search/label/Artist%20Stories</b:widget-setting>
+            <b:widget-setting name='text-2'>Submit Music</b:widget-setting>
+            <b:widget-setting name='link-2'>/p/submit-music.html</b:widget-setting>
+          </b:widget-settings>
+          <b:includable id='main'>
+            <ul>
+              <b:loop values='links' var='link'>
+                <li><a expr:href='data:link.target'><link.name/></a></li>
+              </b:loop>
+            </ul>
+          </b:includable>
+          <b:includable id='content'>
+ <div class='widget-content'>
+   <ul>
+     <b:loop values='data:links' var='link'>
+       <li><a expr:href='link.target'><link.name/></a></li>
+     </b:loop>
+   </ul>
+ </div>
+</b:includable>
+        </b:widget>
+      </b:section>
+    </nav>
+  </div>
+</header>
+
+<main class='wrap'>
+  <div class='layout'>
+    <div class='main-column'>
+      <b:section class='main-section' id='main-content' showaddelement='no'>
+        <b:widget id='Blog1' locked='true' title='Blog Posts' type='Blog' version='2' visible='true'>
+          <b:widget-settings>
+            <b:widget-setting name='showDateHeader'>false</b:widget-setting>
+            <b:widget-setting name='showShareButtons'>false</b:widget-setting>
+            <b:widget-setting name='showCommentLink'>false</b:widget-setting>
+            <b:widget-setting name='showAuthor'>true</b:widget-setting>
+            <b:widget-setting name='showLabels'>true</b:widget-setting>
+            <b:widget-setting name='showTimestamp'>true</b:widget-setting>
+          </b:widget-settings>
+          <b:includable id='main'>
+            <b:if cond='view.isHomepage'>
+              <h1 class='post-title'>Gospel music, told properly</h1>
+              <div class='rule-gold'/>
+              <p style='color:#6b6a80;margin-top:14px;max-width:38rem'>Features, artist life stories compiled from public sources, streaming discovery and songwriting tools for independent gospel artists.</p>
+            </b:if>
+
+            <b:if cond='view.isSearch'>
+              <div class='status-msg-wrap'>Showing posts for &#8220;<view.search.query/>&#8221;</div>
+            </b:if>
+
+            <div expr:class='view.isSingleItem ? "item" : "index"'>
+              <b:loop values='posts' var='post'>
+                <article class='post'>
+                  <b:if cond='post.labels'>
+                    <p class='post-label'><post.labels.first.name/></p>
+                  </b:if>
+                  <h2 class='post-title'>
+                    <b:if cond='view.isSingleItem'>
+                      <post.title/>
+                    <b:else/>
+                      <a expr:href='post.url'><post.title/></a>
+                    </b:if>
+                  </h2>
+                  <p class='post-meta'>
+                    <post.date/>
+                    <b:if cond='post.author.name'> &#183; <post.author.name/></b:if>
+                  </p>
+                  <div class='post-body'>
+                    <b:if cond='view.isSingleItem'>
+                      <data:post.body/>
+                    <b:else/>
+                      <post.snippet/>
+                      <div><a class='readmore' expr:href='post.url'>Read the feature</a></div>
+                    </b:if>
+                  </div>
+                </article>
+              </b:loop>
+            </div>
+
+            <b:if cond='!view.isSingleItem'>
+              <div class='blog-pager'>
+                <b:if cond='newerPageUrl'><a expr:href='data:newerPageUrl'>&#8592; Newer posts</a><b:else/><span/></b:if>
+                <b:if cond='olderPageUrl'><a expr:href='olderPageUrl'>Older posts &#8594;</a></b:if>
+              </div>
+            </b:if>
+          </b:includable>
+          <!-- Minimal required includables for V2 -->
+          <b:includable id='postBody' var='post'><div class='post-body'><post.body/></div></b:includable>
+          <b:includable id='postTitle' var='post'><h3 class='post-title'><a expr:href='data:post.url'><post.title/></a></h3></b:includable>
+          <b:includable id='commentPicker' var='post'></b:includable>
+          <b:includable id='threadedComments' var='post'></b:includable>
+        </b:widget>
+      </b:section>
+    </div>
+
+    <aside class='sidebar'>
+      <b:section class='sidebar-section' id='sidebar' showaddelement='yes'>
+        
+        <!-- WIDGET: AI Music Studio -->
+        <b:widget id='HTML1' locked='false' title='AI Song Studio' type='HTML' version='2' visible='true'>
+          <b:widget-settings>
+            <b:widget-setting name='content'><![CDATA[
+<div id="ai-studio-widget">
+  <div class="module-tabs">
+    <button class="tab-btn active" onclick="switchTab('generate')">Create</button>
+    <button class="tab-btn" onclick="switchTab('explore')">Explore</button>
+  </div>
+  
+  <div id="tab-generate" class="tab-content active">
+    <div class="form-group">
+      <label class="form-label">Describe your gospel song idea</label>
+      <textarea id="song-prompt" class="form-input" rows="3" placeholder="E.g., A joyful high-praise song about redemption with piano and choir..."></textarea>
+    </div>
+    <button class="btn btn-gold" style="width:100%" onclick="generateMusic()">Generate Instrumental</button>
+    <div id="ai-result" class="result-box" style="display:none">
+      <p style="margin:0;color:var(--muted)">Processing request via secure middleware...</p>
+    </div>
+  </div>
+
+  <div id="tab-explore" class="tab-content">
+    <p style="font-size:.85rem;margin-bottom:10px">Search verified artist info via Gemini AI:</p>
+    <input type="text" id="artist-search" class="form-input" placeholder="Artist Name (e.g., Kirk Franklin)" />
+    <button class="btn" style="width:100%;margin-top:8px" onclick="searchArtist()">Find Story & Discography</button>
+    <div id="gemini-result" class="result-box" style="display:none"></div>
+  </div>
+</div>
+<script>
+//<![CDATA[
+const API_ENDPOINTS = {
+  SUNO: '/api/middleware/suno', // Replace with your Cloudflare Worker URL
+  GEMINI: '/api/middleware/gemini' // Replace with your Cloudflare Worker URL
+};
+
+function switchTab(tab) {
+  document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+  document.getElementById('tab-' + tab).classList.add('active');
+  event.target.classList.add('active');
+}
+
+async function generateMusic() {
+  const prompt = document.getElementById('song-prompt').value;
+  const resultBox = document.getElementById('ai-result');
+  if(!prompt) return alert("Please enter a prompt");
+  
+  resultBox.style.display = 'block';
+  resultBox.innerHTML = '<p style="margin:0;color:var(--gold)">Connecting to secure middleware...</p>';
+  
+  try {
+    // Example fetch to your middleware
+    /* 
+    const response = await fetch(API_ENDPOINTS.SUNO, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({ prompt: prompt, tags: 'gospel' })
+    });
+    const data = await response.json();
+    */
+    
+    // Mock response for template demo
+    setTimeout(() => {
+      resultBox.innerHTML = `
+        <div style="text-align:center">
+          <p><strong>Generated Track:</strong> "Grace Abounds"</p>
+          <audio controls="controls" style="width:100%;margin:10px 0">
+            <source src="#" type="audio/mpeg" />
+            Your browser does not support the audio element.
+          </audio>
+          <small style="color:var(--muted)">Preview generated via middleware proxy</small>
+        </div>`;
+    }, 1500);
+  } catch (e) {
+    resultBox.innerHTML = '<p style="color:red">Error connecting to service.</p>';
+  }
+}
+
+async function searchArtist() {
+  const query = document.getElementById('artist-search').value;
+  const resultBox = document.getElementById('gemini-result');
+  if(!query) return alert("Enter an artist name");
+
+  resultBox.style.display = 'block';
+  resultBox.innerHTML = '<p style="margin:0;color:var(--gold)">Querying verified public records...</p>';
+
+  try {
+    /*
+    const response = await fetch(API_ENDPOINTS.GEMINI, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({ 
+        prompt: `Provide verified public biography and discography for gospel artist ${query}. Strictly output facts only.` 
+      })
+    });
+    */
+    
+    // Mock response
+    setTimeout(() => {
+      resultBox.innerHTML = `
+        <h4 style="margin:0 0 5px">${query}</h4>
+        <p style="font-size:.8rem;line-height:1.4"><strong>Bio:</strong> Verified public biography data would appear here from middleware...</p>
+        <p style="font-size:.8rem;line-height:1.4"><strong>Top Tracks:</strong> 1. Amazing Grace 2. Smile 3. Love Theory</p>
+      `;
+    }, 1500);
+  } catch(e) {
+    resultBox.innerHTML = '<p style="color:red">Search failed.</p>';
+  }
+}
+//]]>
+</script>
+            ]]></b:widget-setting>
+          </b:widget-settings>
+          <b:includable id='main'>
+            <div class='card'>
+              <h2><data:title/></h2>
+              <div class='rule-gold'/>
+              <content/>
+            </div>
+          </b:includable>
+        </b:widget>
+
+        <!-- WIDGET: Artist Submission -->
+        <b:widget id='HTML2' locked='false' title='Submit Your Music' type='HTML' version='2' visible='true'>
+          <b:widget-settings>
+            <b:widget-setting name='content'><![CDATA[
+<form id="submission-form" onsubmit="handleSubmission(event)">
+  <div class="form-group">
+    <label class="form-label">Artist/Group Name</label>
+    <input type="text" class="form-input" required="required" placeholder="Your name" />
+  </div>
+  <div class="form-group">
+    <label class="form-label">Email Address</label>
+    <input type="email" class="form-input" required="required" placeholder="contact@example.com" />
+  </div>
+  <div class="form-group">
+    <label class="form-label">Streaming Link (Spotify/YouTube)</label>
+    <input type="url" class="form-input" required="required" placeholder="https://..." />
+  </div>
+  <div class="form-group">
+    <label class="form-label">Brief Bio / Song Story</label>
+    <textarea class="form-input" rows="3" required="required" placeholder="Tell us about this release..."></textarea>
+  </div>
+  <button type="submit" class="btn btn-gold" style="width:100%">Submit for Review</button>
+  <p id="submit-status" style="font-size:.8rem;margin-top:8px;color:var(--gold);display:none">Submission sent securely!</p>
+</form>
+<script>
+//<![CDATA[
+function handleSubmission(e) {
+  e.preventDefault();
+  const btn = e.target.querySelector('button');
+  const status = document.getElementById('submit-status');
+  const originalText = btn.innerText;
+  
+  btn.innerText = "Sending...";
+  btn.disabled = true;
+
+  // Simulate secure API call
+  setTimeout(() => {
+    btn.innerText = originalText;
+    btn.disabled = false;
+    status.style.display = 'block';
+    e.target.reset();
+    
+    // Reset message after 3 seconds
+    setTimeout(() => { status.style.display = 'none'; }, 3000);
+  }, 1500);
+}
+//]]>
+</script>
+            ]]></b:widget-setting>
+          </b:widget-settings>
+          <b:includable id='main'>
+            <div class='card gold'>
+              <h3><title/></h3>
+              <div class='rule-gold'/>
+              <content/>
+            </div>
+          </b:includable>
+        </b:widget>
+
+        <!-- WIDGET: Streaming Feeds -->
+        <b:widget id='HTML3' locked='false' title='Gospel Streams' type='HTML' version='2' visible='true'>
+          <b:widget-settings>
+            <b:widget-setting name='content'><![CDATA[
+<div class="embed" style="margin-bottom:12px">
+  <iframe height="352" loading="lazy" src="https://open.spotify.com/embed/playlist/37i9dQZF1DWVXCLC2fT0Uc?utm_source=generator" title="Gospel playlist on Spotify"></iframe>
+</div>
+<div class="embed">
+  <iframe height="200" loading="lazy" src="https://www.youtube.com/embed/videoseries?list=PLBI1c0Vpj1IN3sEqBSMkdzMbUvA_pJ0jN" title="Gospel on YouTube Music"></iframe>
+</div>
+            ]]></b:widget-setting>
+          </b:widget-settings>
+          <b:includable id='main'>
+            <div class='card'>
+              <h3><title/></h3>
+              <div class='rule-gold'/>
+              <content/>
+            </div>
+          </b:includable>
+        </b:widget>
+
+        <b:widget id='Label1' locked='false' title='Sections' type='Label' version='2' visible='true'>
+          <b:widget-settings>
+            <b:widget-setting name='sorting'>ALPHA</b:widget-setting>
+            <b:widget-setting name='display'>LIST</b:widget-setting>
+            <b:widget-setting name='selectedLabelsList'/>
+            <b:widget-setting name='showType'>ALL</b:widget-setting>
+            <b:widget-setting name='showFreqNumbers'>false</b:widget-setting>
+          </b:widget-settings>
+          <b:includable id='main'>
+            <div class='card widget'>
+              <h3><title/></h3>
+              <div class='rule-gold'/>
+              <ul>
+                <b:loop values='data:labels' var='label'>
+                  <li><a expr:href='label.url'><label.name/></a></li>
+                </b:loop>
+              </ul>
+            </div>
+          </b:includable>
+          <b:includable id='content'>
+            <div class='widget-content'>
+              <b:include cond='this.display == "list"' name='list'/>
+            </div>
+          </b:includable>
+          <b:includable id='list'>
+            <ul>
+              <b:loop values='data:labels' var='label'>
+                <li><a class='label-name' expr:href='label.url'><label.name/></a></li>
+              </b:loop>
+            </ul>
+          </b:includable>
+        </b:widget>
+
+      </b:section>
+    </aside>
+  </div>
+</main>
+
+<footer class='site-footer'>
+  <div class='footer-inner'>
+    <p class='brand'>PsalmistRuth<span style='color:#D4AF37'>GospelHub</span></p>
+    <p style='max-width:36rem'>A gospel music journal: features, artist research from public sources, streaming discovery, AI song tools, and an open door for independent artists.</p>
+    <b:section class='footer-section' id='footer' showaddelement='yes'/>
+    <p style='font-size:.75rem;margin-top:24px'>&#169; <script type='text/javascript'>document.write(new Date().getFullYear());</script> PsalmistRuth GospelHub. Artist profiles are compiled from publicly available information.</p>
+  </div>
+</footer>
+</body>
+</html>
