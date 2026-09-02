@@ -216,9 +216,9 @@
                     <div id="artist-submit" class="bg-white p-6 rounded-lg shadow-md">
                         <h3 class="text-lg font-bold text-brand-dark mb-2">Submit Your Music</h3>
                         <form id="submissionForm" onsubmit="handleSubmission(event)" class="space-y-3">
-                            <input type="text" required placeholder="Artist Name" class="w-full border rounded p-2 text-sm"/>
-                            <input type="email" required placeholder="Email Address" class="w-full border rounded p-2 text-sm"/>
-                            <input type="url" required placeholder="Spotify/Apple Link" class="w-full border rounded p-2 text-sm"/>
+                            <input type="text" required="required" placeholder="Artist Name" class="w-full border rounded p-2 text-sm"/>
+                            <input type="email" required="required" placeholder="Email Address" class="w-full border rounded p-2 text-sm"/>
+                            <input type="url" required="required" placeholder="Spotify/Apple Link" class="w-full border rounded p-2 text-sm"/>
                             <textarea placeholder="Brief Bio" rows="2" class="w-full border rounded p-2 text-sm"></textarea>
                             <button type="submit" class="w-full bg-brand-dark text-white py-2 rounded text-sm font-bold hover:bg-gray-800 transition">Send Demo</button>
                         </form>
