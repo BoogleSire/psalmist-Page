@@ -292,7 +292,7 @@
                 resultDiv.innerHTML = `
                     <div class="bg-green-100 p-3 rounded text-center">
                         <p class="text-green-800 font-bold">Track Generated!</p>
-                        <audio controls class="w-full mt-2 h-8">
+                        <audio controls="controls" class="w-full mt-2 h-8">
                             <source src="#" type="audio/mpeg">
                             Your browser does not support the audio element.
                         </audio>
