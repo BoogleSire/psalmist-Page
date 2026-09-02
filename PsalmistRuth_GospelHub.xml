@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html b:css='false' b:defaultwidgetversion='2' b:layoutsVersion='3' b:responsive='true' b:templateUrl='indie.xml' b:templateVersion='1.3.0' expr:dir='data:blog.languageDirection' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
+<head>
+    <meta content='width=device-width, initial-scale=1' name='viewport'/>
+    <b:include data='blog' name='all-head-content'/>
+    <title><data:blog.pageTitle/></title>
+    
+    <!-- Google Fonts -->
+    <link href='https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&amp;display=swap' rel='stylesheet'/>
+    
+    <!-- Tailwind CSS (CDN for standalone template) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            gold: '#D4AF37',
+                            dark: '#1a1a1a',
+                            light: '#f4f4f4',
+                            accent: '#8B4513'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <b:skin><![CDATA[
+        /* 
+         * PsalmistRuth GospelHub - Custom Styles 
+         * Overrides and enhancements to Tailwind
+         */
+        body {
+            background-color: #f9fafb;
+            color: #1a1a1a;
+        }
+        
+        .sidebar-sticky {
+            position: sticky;
+            top: 20px;
+            height: calc(100vh - 40px);
+            overflow-y: auto;
+        }
+
+        .tool-card {
+            transition: all 0.3s ease;
+        }
+        
+        .tool-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .loader {
+            border-top-color: #D4AF37;
+            -webkit-animation: spinner 1.5s linear infinite;
+            animation: spinner 1.5s linear infinite;
+        }
+
+        @-webkit-keyframes spinner {
+            0% { -webkit-transform: rotate(0deg); }
+            100% { -webkit-transform: rotate(360deg); }
+        }
+
+        @keyframes spinner {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #D4AF37; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #b5952f; 
+        }
+    ]]></b:skin>
+</head>
+<body class="font-sans antialiased">
+
+    <!-- Top Navigation Bar -->
+    <nav class="bg-brand-dark text-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <span class="text-2xl font-bold text-brand-gold">PsalmistRuth<span class="text-white text-sm block font-normal">GospelHub</span></span>
+                    </div>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="/" class="hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                        <a href="#ai-tools" class="hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">AI Studio</a>
+                        <a href="#artist-portal" class="hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">Submit Music</a>
+                        <a href="#gemini-explorer" class="hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">Artist Explorer</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="flex flex-col md:flex-row gap-8">
+            
+            <!-- Main Content Area -->
+            <main class="w-full md:w-3/4">
+                
+                <!-- Blogger Post Loop -->
+                <b:section id='main' showaddelement='no'>
+                    <b:widget id='Blog1' locked='true' title='Blog Posts' type='Blog'>
+                        <b:includable id='main' var='top'>
+                            <!-- Loop through posts -->
+                            <b:loop values='data:posts' var='post'>
+                                <article class="bg-white rounded-lg shadow-md mb-8 overflow-hidden">
+                                    <b:if cond='data:post.firstImageUrl'>
+                                        <div class="h-48 w-full bg-cover bg-center" expr:style='"background-image: url(" + data:post.firstImageUrl + ");"'></div>
+                                    </b:if>
+                                    <div class="p-6">
+                                        <h2 class="text-2xl font-bold mb-2 text-brand-dark">
+                                            <a expr:href='data:post.url'><data:post.title/></a>
+                                        </h2>
+                                        <div class="text-gray-500 text-sm mb-4">
+                                            <span>By <data:post.author/></span> | <span><data:post.dateHeader/></span>
+                                        </div>
+                                        <div class="prose max-w-none text-gray-700">
+                                            <data:post.snippet/>
+                                        </div>
+                                        <div class="mt-4">
+                                            <a expr:href='data:post.url' class="text-brand-gold font-semibold hover:text-brand-accent">Read Full Article →</a>
+                                        </div>
+                                    </div>
+                                </article>
+                            </b:loop>
+                            
+                            <!-- Pagination -->
+                            <div class="flex justify-between mt-8">
+                                <b:if cond='data:newerPageUrl'>
+                                    <a expr:href='data:newerPageUrl' class="px-4 py-2 bg-brand-dark text-white rounded hover:bg-gray-800">Previous</a>
+                                </b:if>
+                                <b:if cond='data:olderPageUrl'>
+                                    <a expr:href='data:olderPageUrl' class="px-4 py-2 bg-brand-dark text-white rounded hover:bg-gray-800">Next</a>
+                                </b:if>
+                            </div>
+                        </b:includable>
+                    </b:widget>
+                </b:section>
+
+            </main>
+
+            <!-- Sidebar Navigation & Tools -->
+            <aside class="w-full md:w-1/4">
+                <div class="sidebar-sticky space-y-6">
+                    
+                    <!-- Quick Links Widget -->
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="text-lg font-bold text-brand-dark mb-4 border-b pb-2">Quick Access</h3>
+                        <ul class="space-y-2">
+                            <li><a href="#ai-song-gen" class="block p-2 bg-gray-50 rounded hover:bg-brand-gold hover:text-white transition">🎵 AI Song Generator</a></li>
+                            <li><a href="#spotify-feed" class="block p-2 bg-gray-50 rounded hover:bg-brand-gold hover:text-white transition">🎧 Spotify Gospel</a></li>
+                            <li><a href="#youtube-feed" class="block p-2 bg-gray-50 rounded hover:bg-brand-gold hover:text-white transition">📺 YouTube Music</a></li>
+                            <li><a href="#artist-submit" class="block p-2 bg-gray-50 rounded hover:bg-brand-gold hover:text-white transition">🎤 Artist Submission</a></li>
+                            <li><a href="#gemini-search" class="block p-2 bg-gray-50 rounded hover:bg-brand-gold hover:text-white transition">🔍 Gemini Explorer</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- AI Song Generator Widget -->
+                    <div id="ai-song-gen" class="bg-white p-6 rounded-lg shadow-md tool-card">
+                        <h3 class="text-lg font-bold text-brand-dark mb-2">AI Music Creator</h3>
+                        <p class="text-xs text-gray-500 mb-4">Generate gospel instrumentals via secure proxy.</p>
+                        <div class="space-y-3">
+                            <input type="text" id="ai-prompt" placeholder="e.g., Uplifting choir piano intro..." class="w-full border rounded p-2 text-sm"/>
+                            <button onclick="generateMusic()" class="w-full bg-brand-gold text-white py-2 rounded text-sm font-bold hover:bg-yellow-600 transition">Generate Track</button>
+                        </div>
+                        <div id="ai-result" class="mt-4 hidden">
+                            <div class="loader ease-linear rounded-full border-2 border-t-2 border-gray-200 h-6 w-6 mx-auto"></div>
+                            <p class="text-xs text-center mt-2">Processing via Secure Middleware...</p>
+                        </div>
+                    </div>
+
+                    <!-- Streaming Feeds Placeholder -->
+                    <div id="spotify-feed" class="bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="text-lg font-bold text-brand-dark mb-2">Top Gospel Streams</h3>
+                        <div class="space-y-3">
+                            <!-- Mocked API Feed Structure -->
+                            <div class="flex items-center space-x-3 p-2 border rounded">
+                                <div class="w-10 h-10 bg-green-500 rounded flex items-center justify-center text-white text-xs">SP</div>
+                                <div>
+                                    <p class="text-sm font-bold">Gospel Hits Weekly</p>
+                                    <p class="text-xs text-gray-500">Updated Today</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-3 p-2 border rounded">
+                                <div class="w-10 h-10 bg-red-600 rounded flex items-center justify-center text-white text-xs">YT</div>
+                                <div>
+                                    <p class="text-sm font-bold">Worship Live Sessions</p>
+                                    <p class="text-xs text-gray-500">Trending Now</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Artist Submission Portal -->
+                    <div id="artist-submit" class="bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="text-lg font-bold text-brand-dark mb-2">Submit Your Music</h3>
+                        <form id="submissionForm" onsubmit="handleSubmission(event)" class="space-y-3">
+                            <input type="text" required placeholder="Artist Name" class="w-full border rounded p-2 text-sm"/>
+                            <input type="email" required placeholder="Email Address" class="w-full border rounded p-2 text-sm"/>
+                            <input type="url" required placeholder="Spotify/Apple Link" class="w-full border rounded p-2 text-sm"/>
+                            <textarea placeholder="Brief Bio" rows="2" class="w-full border rounded p-2 text-sm"></textarea>
+                            <button type="submit" class="w-full bg-brand-dark text-white py-2 rounded text-sm font-bold hover:bg-gray-800 transition">Send Demo</button>
+                        </form>
+                    </div>
+
+                    <!-- Gemini Artist Explorer -->
+                    <div id="gemini-search" class="bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="text-lg font-bold text-brand-dark mb-2">Gemini Artist Explorer</h3>
+                        <p class="text-xs text-gray-500 mb-2">Get verified artist bios &amp; discography.</p>
+                        <div class="flex gap-2">
+                            <input type="text" id="gemini-query" placeholder="Search Artist..." class="w-full border rounded p-2 text-sm"/>
+                            <button onclick="searchArtist()" class="bg-brand-gold text-white px-3 rounded hover:bg-yellow-600">🔍</button>
+                        </div>
+                        <div id="gemini-result" class="mt-4 text-sm text-gray-700 hidden">
+                            <!-- Dynamic Content Loaded Here -->
+                        </div>
+                    </div>
+
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-brand-dark text-white mt-12 py-8">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p>&copy; <span id="year"></span> PsalmistRuth GospelHub. All rights reserved.</p>
+            <p class="text-gray-500 text-sm mt-2">Powered by Blogger &amp; Secure AI Middleware</p>
+        </div>
+    </footer>
+
+    <!-- Client Side Logic -->
+    <script>
+        // Set Current Year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        /**
+         * CONFIGURATION
+         * IMPORTANT: In a production environment, replace these URLs with your actual 
+         * Cloudflare Worker or Vercel Function endpoints. Do not put API Keys here.
+         */
+        const API_ENDPOINTS = {
+            MUSIC_GEN: 'https://your-middleware-project.vercel.app/api/generate-music',
+            GEMINI_AI: 'https://your-middleware-project.vercel.app/api/gemini-artist',
+            SUBMISSION: 'https://your-middleware-project.vercel.app/api/submit-demo'
+        };
+
+        /**
+         * AI Music Generation Handler
+         * Calls secure middleware which handles the Suno/AIMakeSong API key.
+         */
+        async function generateMusic() {
+            const prompt = document.getElementById('ai-prompt').value;
+            const resultDiv = document.getElementById('ai-result');
+            
+            if(!prompt) return alert("Please enter a prompt");
+
+            resultDiv.classList.remove('hidden');
+            
+            try {
+                // Simulating fetch to secure middleware
+                // const response = await fetch(API_ENDPOINTS.MUSIC_GEN, {
+                //     method: 'POST',
+                //     headers: { 'Content-Type': 'application/json' },
+                //     body: JSON.stringify({ prompt: prompt, genre: 'gospel' })
+                // });
+                // const data = await response.json();
+                
+                // MOCK RESPONSE FOR DEMO PURPOSES
+                await new Promise(r => setTimeout(r, 2000)); 
+                resultDiv.innerHTML = `
+                    <div class="bg-green-100 p-3 rounded text-center">
+                        <p class="text-green-800 font-bold">Track Generated!</p>
+                        <audio controls class="w-full mt-2 h-8">
+                            <source src="#" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </div>
+                `;
+            } catch (error) {
+                resultDiv.innerHTML = `<p class="text-red-500 text-center">Error generating track. Please try again.</p>`;
+            }
+        }
+
+        /**
+         * Gemini Artist Explorer Handler
+         * Calls secure middleware which handles the Gemini API key and prompt engineering.
+         */
+        async function searchArtist() {
+            const query = document.getElementById('gemini-query').value;
+            const resultDiv = document.getElementById('gemini-result');
+            
+            if(!query) return alert("Please enter an artist name");
+
+            resultDiv.classList.remove('hidden');
+            resultDiv.innerHTML = '<div class="loader ease-linear rounded-full border-2 border-t-2 border-gray-200 h-6 w-6 mx-auto"></div><p class="text-center text-xs mt-2">Consulting AI Archives...</p>';
+
+            try {
+                // const response = await fetch(API_ENDPOINTS.GEMINI_AI, {
+                //     method: 'POST',
+                //     headers: { 'Content-Type': 'application/json' },
+                //     body: JSON.stringify({ 
+                //         query: query, 
+                //         systemInstruction: "You are a gospel music expert. Provide only verified public info about the artist's life, discography, and song meanings." 
+                //     })
+                // });
+                // const data = await response.json();
+
+                // MOCK RESPONSE FOR DEMO PURPOSES
+                await new Promise(r => setTimeout(r, 1500));
+                resultDiv.innerHTML = `
+                    <div class="space-y-2 animate-fade-in">
+                        <h4 class="font-bold text-brand-gold">${query}</h4>
+                        <p><strong>Bio:</strong> Renowned gospel artist known for soulful vocals and inspirational lyrics. Active since 2010.</p>
+                        <p><strong>Key Albums:</strong> "Grace Abundant" (2015), "River of Life" (2018).</p>
+                        <p><strong>Signature Track:</strong> "Lift Me Higher" - Written during a period of personal revival.</p>
+                    </div>
+                `;
+            } catch (error) {
+                resultDiv.innerHTML = `<p class="text-red-500 text-center">Failed to fetch artist data.</p>`;
+            }
+        }
+
+        /**
+         * Artist Submission Handler
+         */
+        function handleSubmission(e) {
+            e.preventDefault();
+            const btn = e.target.querySelector('button');
+            const originalText = btn.innerText;
+            
+            btn.innerText = "Sending...";
+            btn.disabled = true;
+
+            setTimeout(() => {
+                alert("Demo submitted successfully! We will contact you soon.");
+                e.target.reset();
+                btn.innerText = originalText;
+                btn.disabled = false;
+            }, 1500);
+        }
+    </script>
+</body>
+</html>
