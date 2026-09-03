@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html>
-<html b:css='false' b:defaultwidgetversion='2' b:layoutsVersion='3' b:responsive='true' b:version='2' class='v2' expr:dir='blog.languageDirection' expr:lang='blog.locale' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
+<html b:css='false' b:defaultwidgetversion='2' b:layoutsVersion='3' b:responsive='true' b:version='2' class='v2' expr:dir='data:blog.languageDirection' expr:lang='data:blog.locale' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
 <head>
 <meta content='width=device-width, initial-scale=1' name='viewport'/>
 <meta content='summary_large_image' name='twitter:card'/>
 <meta expr:content='data:blog.canonicalUrl' property='og:url'/>
-<meta expr:content='blog.pageName ?: data:blog.title' property='og:title'/>
-<meta expr:content='data:blog.metaDescription ?: blog.title' name='description'/>
-<meta expr:content='blog.metaDescription ?: data:blog.title' property='og:description'/>
+<meta expr:content='data:blog.pageName ?: data:blog.title' property='og:title'/>
+<meta expr:content='data:blog.metaDescription ?: data:blog.title' name='description'/>
+<meta expr:content='data:blog.metaDescription ?: data:blog.title' property='og:description'/>
 <meta content='website' property='og:type'/>
-<link expr:href='blog.canonicalUrl' rel='canonical'/>
+<link expr:href='data:blog.canonicalUrl' rel='canonical'/>
 <title><b:if cond='view.isHomepage'><data:blog.title/> &#8212; PsalmistRuth GospelHub<b:else/><data:blog.pageName/> | <data:blog.title/></b:if></title>
 <link href='https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&amp;family=Karla:wght@400;500;700&amp;display=swap' rel='stylesheet'/>
 <b:skin version='1.3.0'><![CDATA[
@@ -144,16 +144,16 @@ h1,h2,h3,h4{font-family:var(--display);font-weight:600;letter-spacing:-.01em;mar
     </b:if>
   </b:includable>
         <b:includable id='description'>
-    <p><this.description/></p>
+    <p><data:this.description/></p>
   </b:includable>
         <b:includable id='image'>
-    <a class='header-image-wrapper' expr:href='blog.homepageUrl'>
-      <b:include data='{ image: data:image, altText: blog.title.escaped, originalWidth: width, originalHeight: height }' name='responsiveImage'/>
+    <a class='header-image-wrapper' expr:href='data:blog.homepageUrl'>
+      <b:include data='{ image: data:image, altText: data:blog.title.escaped, originalWidth: width, originalHeight: height }' name='responsiveImage'/>
     </a>
   </b:includable>
         <b:includable id='title'>
     <h1>
-      <b:tag cond='data:view.url != data:blog.homepageUrl' expr:href='blog.homepageUrl' name='a'>
+      <b:tag cond='data:view.url != data:blog.homepageUrl' expr:href='data:blog.homepageUrl' name='a'>
         <data:title/>
       </b:tag>
     </h1>
@@ -175,7 +175,7 @@ h1,h2,h3,h4{font-family:var(--display);font-weight:600;letter-spacing:-.01em;mar
           <b:includable id='main'>
             <ul>
               <b:loop values='links' var='link'>
-                <li><a expr:href='data:link.target'><link.name/></a></li>
+                <li><a expr:href='data:link.target'><data:link.name/></a></li>
               </b:loop>
             </ul>
           </b:includable>
@@ -183,16 +183,42 @@ h1,h2,h3,h4{font-family:var(--display);font-weight:600;letter-spacing:-.01em;mar
  <div class='widget-content'>
    <ul>
      <b:loop values='data:links' var='link'>
-       <li><a expr:href='link.target'><link.name/></a></li>
+       <li><a expr:href='data:link.target'><data:link.name/></a></li>
      </b:loop>
    </ul>
  </div>
 </b:includable>
         </b:widget>
       </b:section>
+      
+      <!-- Mobile Search Toggle -->
+      <button aria-label='Toggle search' class='btn' onclick='toggleMobileSearch()' style='background:none;border:1px solid var(--border);color:var(--ink);padding:8px 12px'>🔍</button>
     </nav>
+    
+    <!-- Mobile Search Bar -->
+    <div id='mobile-search' style='display:none;padding:0 16px 16px;background:rgba(250,246,236,.98);border-bottom:1px solid var(--border)'>
+      <form expr:action='data:blog.searchUrl' method='get' style='display:flex;gap:8px'>
+        <input autocomplete='off' class='form-input' name='q' placeholder='Search articles, artists...' style='flex:1'/>
+        <button class='btn btn-gold' type='submit'>Search</button>
+      </form>
+    </div>
   </div>
 </header>
+
+<script>
+//<![CDATA[
+// Mobile search toggle for Blogger
+function toggleMobileSearch() {
+  var el = document.getElementById('mobile-search');
+  if(el.style.display === 'none') {
+    el.style.display = 'block';
+    el.querySelector('input').focus();
+  } else {
+    el.style.display = 'none';
+  }
+}
+//]]>
+</script>
 
 <main class='wrap'>
   <div class='layout'>
@@ -214,33 +240,65 @@ h1,h2,h3,h4{font-family:var(--display);font-weight:600;letter-spacing:-.01em;mar
               <p style='color:#6b6a80;margin-top:14px;max-width:38rem'>Features, artist life stories compiled from public sources, streaming discovery and songwriting tools for independent gospel artists.</p>
             </b:if>
 
-            <b:if cond='view.isSearch'>
-              <div class='status-msg-wrap'>Showing posts for &#8220;<view.search.query/>&#8221;</div>
+            <b:if cond='view.isSearch or view.isLabelSearch'>
+              <div class='status-msg-wrap'>
+                <b:if cond='view.isSearch'>Showing posts for &#8220;<data:view.search.query/>&#8221;</b:if>
+                <b:if cond='view.isLabelSearch'>Posts labeled &#8220;<data:view.label.name/>&#8221;</b:if>
+              </div>
             </b:if>
 
             <div expr:class='view.isSingleItem ? "item" : "index"'>
               <b:loop values='posts' var='post'>
                 <article class='post'>
-                  <b:if cond='post.labels'>
-                    <p class='post-label'><post.labels.first.name/></p>
+                  <b:if cond='data:post.labels'>
+                    <p class='post-label'><data:post.labels.first.name/></p>
                   </b:if>
                   <h2 class='post-title'>
                     <b:if cond='view.isSingleItem'>
-                      <post.title/>
+                      <data:post.title/>
                     <b:else/>
-                      <a expr:href='post.url'><post.title/></a>
+                      <a expr:href='data:post.url'><data:post.title/></a>
                     </b:if>
                   </h2>
                   <p class='post-meta'>
-                    <post.date/>
-                    <b:if cond='post.author.name'> &#183; <post.author.name/></b:if>
+                    <data:post.date/>
+                    <b:if cond='data:post.author.name'> &#183; <data:post.author.name/></b:if>
                   </p>
                   <div class='post-body'>
                     <b:if cond='view.isSingleItem'>
                       <data:post.body/>
+                      
+                      <!-- Share Buttons -->
+                      <div style='margin-top:24px;padding-top:16px;border-top:1px solid var(--border)'>
+                        <p style='font-size:.85rem;font-weight:700;margin-bottom:8px;color:var(--muted)'>Share this feature:</p>
+                        <div style='display:flex;gap:12px'>
+                          <a class='btn' expr:href='"https://www.facebook.com/sharer.php?u=" + data:post.url' style='background:#1877F2;color:#fff;padding:6px 14px;font-size:.8rem' target='_blank'>Facebook</a>
+                          <a class='btn' expr:href='"https://twitter.com/intent/tweet?url=" + data:post.url + "&amp;text=" + data:post.title' style='background:#000;color:#fff;padding:6px 14px;font-size:.8rem' target='_blank'>X/Twitter</a>
+                          <a class='btn' expr:href='"https://wa.me/?text=" + data:post.title + " " + data:post.url' style='background:#25D366;color:#fff;padding:6px 14px;font-size:.8rem' target='_blank'>WhatsApp</a>
+                        </div>
+                      </div>
+                      
+                      <!-- Author Box -->
+                      <div style='margin-top:24px;background:var(--accent);padding:16px;border-radius:var(--radius);border:1px solid var(--border)'>
+                        <p style='font-size:.85rem;font-weight:700;margin-bottom:4px'>About the Author</p>
+                        <p style='font-size:.9rem;color:var(--muted)'><data:post.author.name/> writes about gospel music, artist stories, and faith-inspired creativity.</p>
+                      </div>
+                      
+                      <!-- Related Posts by Label -->
+                      <b:if cond='data:post.labels'>
+                        <div style='margin-top:24px'>
+                          <h3 style='font-size:1.1rem;margin-bottom:12px'>Related Articles</h3>
+                          <ul style='list-style:none;padding:0;margin:0;display:grid;gap:8px'>
+                            <b:loop values='data:post.labels' var='label'>
+                              <li><a expr:href='data:label.url' style='color:var(--gold);font-size:.9rem'>More in <data:label.name/></a></li>
+                            </b:loop>
+                          </ul>
+                        </div>
+                      </b:if>
+                      
                     <b:else/>
-                      <post.snippet/>
-                      <div><a class='readmore' expr:href='post.url'>Read the feature</a></div>
+                      <data:post.snippet/>
+                      <div><a class='readmore' expr:href='data:post.url'>Read the feature</a></div>
                     </b:if>
                   </div>
                 </article>
@@ -249,14 +307,14 @@ h1,h2,h3,h4{font-family:var(--display);font-weight:600;letter-spacing:-.01em;mar
 
             <b:if cond='!view.isSingleItem'>
               <div class='blog-pager'>
-                <b:if cond='newerPageUrl'><a expr:href='data:newerPageUrl'>&#8592; Newer posts</a><b:else/><span/></b:if>
-                <b:if cond='olderPageUrl'><a expr:href='olderPageUrl'>Older posts &#8594;</a></b:if>
+                <b:if cond='data:newerPageUrl'><a expr:href='data:newerPageUrl'>&#8592; Newer posts</a><b:else/><span/></b:if>
+                <b:if cond='data:olderPageUrl'><a expr:href='data:olderPageUrl'>Older posts &#8594;</a></b:if>
               </div>
             </b:if>
           </b:includable>
           <!-- Minimal required includables for V2 -->
-          <b:includable id='postBody' var='post'><div class='post-body'><post.body/></div></b:includable>
-          <b:includable id='postTitle' var='post'><h3 class='post-title'><a expr:href='data:post.url'><post.title/></a></h3></b:includable>
+          <b:includable id='postBody' var='post'><div class='post-body'><data:post.body/></div></b:includable>
+          <b:includable id='postTitle' var='post'><h3 class='post-title'><a expr:href='data:post.url'><data:post.title/></a></h3></b:includable>
           <b:includable id='commentPicker' var='post'></b:includable>
           <b:includable id='threadedComments' var='post'></b:includable>
         </b:widget>
@@ -440,7 +498,7 @@ function handleSubmission(e) {
           </b:widget-settings>
           <b:includable id='main'>
             <div class='card gold'>
-              <h3><title/></h3>
+              <h3><data:title/></h3>
               <div class='rule-gold'/>
               <content/>
             </div>
@@ -461,7 +519,7 @@ function handleSubmission(e) {
           </b:widget-settings>
           <b:includable id='main'>
             <div class='card'>
-              <h3><title/></h3>
+              <h3><data:title/></h3>
               <div class='rule-gold'/>
               <content/>
             </div>
@@ -478,11 +536,11 @@ function handleSubmission(e) {
           </b:widget-settings>
           <b:includable id='main'>
             <div class='card widget'>
-              <h3><title/></h3>
+              <h3><data:title/></h3>
               <div class='rule-gold'/>
               <ul>
                 <b:loop values='data:labels' var='label'>
-                  <li><a expr:href='label.url'><label.name/></a></li>
+                  <li><a expr:href='data:label.url'><data:label.name/></a></li>
                 </b:loop>
               </ul>
             </div>
@@ -495,7 +553,7 @@ function handleSubmission(e) {
           <b:includable id='list'>
             <ul>
               <b:loop values='data:labels' var='label'>
-                <li><a class='label-name' expr:href='label.url'><label.name/></a></li>
+                <li><a class='label-name' expr:href='data:label.url'><data:label.name/></a></li>
               </b:loop>
             </ul>
           </b:includable>
