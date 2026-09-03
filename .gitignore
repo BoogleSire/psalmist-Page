@@ -1,4 +1,3 @@
-```
-# XML files
-*.xml
-```
+# No build artifacts, dependencies, or temp files detected
+# Only source/config files present in changes
+# .gitignore remains empty
