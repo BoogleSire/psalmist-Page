@@ -599,9 +599,31 @@ function handleSubmission(e) {
             </ul>
           </b:includable>
         </b:widget>
-
-      </b:section>
-    </aside>
+          </b:section>
+<!--- newsletter subcription widget-->
+        <b:widget id='HTML4' locked='false' title='Newsletter' type='HTML' version='2' visible='true'>
+  <b:widget-settings>
+    <b:widget-setting name='content'><![CDATA[
+<div class="card gold">
+  <h3>Stay Updated</h3>
+  <div class="rule-gold"/>
+  <p style="font-size:.85rem;margin-bottom:12px;color:var(--muted)">Get weekly gospel music features & artist stories.</p>
+  <form action="https://forms.google.com/your-form-url" method="POST" target="_blank">
+    <div class="form-group">
+      <input type="email" class="form-input" name="email" placeholder="Your email" required="required"/>
+    </div>
+    <button type="submit" class="btn btn-gold" style="width:100%">Subscribe</button>
+  </form>
+  <p style="font-size:.7rem;margin-top:8px;color:var(--muted)">No spam. Unsubscribe anytime.</p>
+</div>
+    ]]></b:widget-setting>
+  </b:widget-settings>
+  <b:includable id='main'>
+    <content/>
+  </b:includable>
+</b:widget>
+        <!---end of newsletter subscription-->
+        </aside>
   </div>
 </main>
 
@@ -612,6 +634,55 @@ function handleSubmission(e) {
     <b:section class='footer-section' id='footer' showaddelement='yes'/>
     <p style='font-size:.75rem;margin-top:24px'>&#169; <script type='text/javascript'>document.write(new Date().getFullYear());</script> PsalmistRuth GospelHub. Artist profiles are compiled from publicly available information.</p>
   </div>
+  <!--Instagram/Social Media Feed-->
+  <b:widget id='HTML5' locked='false' title='Follow Us' type='HTML' version='2' visible='true'>
+  <b:widget-settings>
+    <b:widget-setting name='content'><![CDATA[
+<div style="text-align:center;padding:10px">
+  <p style="font-size:.85rem;font-weight:700;margin-bottom:12px;color:var(--gold)">Connect With Us</p>
+  <div style="display:flex;justify-content:center;gap:16px;flex-wrap:wrap">
+    <a href="YOUR_INSTAGRAM_URL" target="_blank" style="font-size:1.5rem;text-decoration:none" title="Instagram">📸</a>
+    <a href="YOUR_FACEBOOK_URL" target="_blank" style="font-size:1.5rem;text-decoration:none" title="Facebook">📘</a>
+    <a href="YOUR_TWITTER_URL" target="_blank" style="font-size:1.5rem;text-decoration:none" title="X/Twitter">🐦</a>
+    <a href="YOUR_YOUTUBE_URL" target="_blank" style="font-size:1.5rem;text-decoration:none" title="YouTube">▶️</a>
+    <a href="mailto:YOUR_EMAIL" style="font-size:1.5rem;text-decoration:none" title="Email">✉️</a>
+  </div>
+</div>
+    ]]></b:widget-setting>
+  </b:widget-settings>
+  <b:includable id='main'>
+    <content/>
+  </b:includable>
+</b:widget>
+  <!-- end Instagram/Social Media Feed-->
 </footer>
+  <!---Reading Progress Bar-->
+  <div id='reading-progress' style='position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--gold),transparent);width:0%;z-index:9999;transition:width .1s'/>
+
+<script>
+//<![CDATA[
+window.addEventListener('scroll', function() {
+  const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+  const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const scrolled = (winScroll / height) * 100;
+  document.getElementById('reading-progress').style.width = scrolled + '%';
+});
+//]]>
+</script>
+    <!--Back to Top Button-->
+    <button id='back-to-top' onclick='window.scrollTo({top:0,behavior:"smooth"})' style='position:fixed;bottom:20px;right:70px;z-index:999;background:var(--gold);color:#fff;border:none;border-radius:50%;width:45px;height:45px;font-size:1.2rem;cursor:pointer;display:none' aria-label='Back to top'>↑</button>
+
+<script>
+//<![CDATA[
+window.addEventListener('scroll', function() {
+  const btn = document.getElementById('back-to-top');
+  if(window.scrollY > 300) {
+    btn.style.display = 'block';
+  } else {
+    btn.style.display = 'none';
+  }
+});
+//]]>
+</script>
 </body>
 </html>
