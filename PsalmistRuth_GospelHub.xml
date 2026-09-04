@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html>
-<html b:css='false' b:defaultwidgetversion='2' b:layoutsVersion='3' b:responsive='true' b:version='2' class='v2' expr:dir='data:blog.languageDirection' expr:lang='data:blog.locale' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
+<html b:css='false' b:defaultwidgetversion='2' b:layoutsVersion='3' b:responsive='true' b:version='2' class='v2' expr:dir='data:blog.languageDirection' expr:lang='data:blog.locale' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b'>
 <head>
 <meta content='width=device-width, initial-scale=1' name='viewport'/>
 <meta content='summary_large_image' name='twitter:card'/>
@@ -21,8 +21,6 @@
   --muted: #a0a0b0;
 }
 </style>
-
-<button id="theme-toggle" class="btn" style="position:fixed;bottom:20px;right:20px;z-index:100;border-radius:50%;width:50px;height:50px;padding:0;font-size:1.2rem" onclick="toggleTheme()">🌙</button>
 
 <script>
 //<![CDATA[
@@ -231,7 +229,9 @@ h1,h2,h3,h4{font-family:var(--display);font-weight:600;letter-spacing:-.01em;mar
 </b:includable>
         </b:widget>
       </b:section>
-      
+      <!--toggle button-->
+    <button id="theme-toggle" class="btn" style="position:fixed;bottom:20px;right:20px;z-index:100;border-radius:50%;width:50px;height:50px;padding:0;font-size:1.2rem" onclick="toggleTheme()">🌙</button>
+  
       <!-- Mobile Search Toggle -->
       <button aria-label='Toggle search' class='btn' onclick='toggleMobileSearch()' style='background:none;border:1px solid var(--border);color:var(--ink);padding:8px 12px'>🔍</button>
     </nav>
@@ -599,8 +599,7 @@ function handleSubmission(e) {
             </ul>
           </b:includable>
         </b:widget>
-          </b:section>
-<!--- newsletter subcription widget-->
+       <!--- newsletter subcription widget-->
         <b:widget id='HTML4' locked='false' title='Newsletter' type='HTML' version='2' visible='true'>
   <b:widget-settings>
     <b:widget-setting name='content'><![CDATA[
@@ -623,6 +622,7 @@ function handleSubmission(e) {
   </b:includable>
 </b:widget>
         <!---end of newsletter subscription-->
+     </b:section>
         </aside>
   </div>
 </main>
@@ -633,8 +633,7 @@ function handleSubmission(e) {
     <p style='max-width:36rem'>A gospel music journal: features, artist research from public sources, streaming discovery, AI song tools, and an open door for independent artists.</p>
     <b:section class='footer-section' id='footer' showaddelement='yes'/>
     <p style='font-size:.75rem;margin-top:24px'>&#169; <script type='text/javascript'>document.write(new Date().getFullYear());</script> PsalmistRuth GospelHub. Artist profiles are compiled from publicly available information.</p>
-  </div>
-  <!--Instagram/Social Media Feed-->
+       <!--Instagram/Social Media Feed-->
   <b:widget id='HTML5' locked='false' title='Follow Us' type='HTML' version='2' visible='true'>
   <b:widget-settings>
     <b:widget-setting name='content'><![CDATA[
@@ -655,7 +654,9 @@ function handleSubmission(e) {
   </b:includable>
 </b:widget>
   <!-- end Instagram/Social Media Feed-->
-</footer>
+    </b:section>
+  </div>
+ </footer>
   <!---Reading Progress Bar-->
   <div id='reading-progress' style='position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--gold),transparent);width:0%;z-index:9999;transition:width .1s'/>
 
